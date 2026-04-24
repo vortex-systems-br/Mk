@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MK Serviços – Elétrica & Climatização</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;
+  --royal:#0d2b6b;
+  --blue:#1a4fad;
+  --sky:#2980d9;
+  --ice:#6ec6f5;
+  --frost:#d4eeff;
+  --white:#ffffff;
+  --green:#00c853;
+  --green-dark:#009624;
+  --gold:#f0b429;
+  --text-light:#e8f4ff;
+  --text-muted:#8eb8d9;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+/* SNOW CANVAS */
+#snow{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,22,40,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(41,128,217,0.2);padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{display:flex;flex-direction:column;align-items:flex-start}
+.logo-mk{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:var(--sky);line-height:1;letter-spacing:-2px}
+.logo-wave{width:60px;height:3px;background:linear-gradient(90deg,var(--sky),var(--ice));border-radius:2px;margin:-4px 0 2px}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+.logo-snowflake{font-size:20px;color:var(--ice);animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--sky);transition:width .3s}
+.nav-links a:hover{color:var(--sky)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--sky),var(--blue));color:var(--white)!important;padding:10px 22px;border-radius:6px;font-size:12px!important;font-weight:700!important;letter-spacing:1.5px!important;transition:transform .2s,box-shadow .2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 24px rgba(41,128,217,0.5)!important;color:var(--white)!important}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,var(--navy) 0%,#0b1e45 50%,#0a1628 100%)}
+.hero-bg-art{position:absolute;inset:0;overflow:hidden}
+.hero-circle{position:absolute;border-radius:50%;border:1px solid rgba(41,128,217,0.12)}
+.hero-circle:nth-child(1){width:600px;height:600px;top:-100px;right:-100px;border-color:rgba(41,128,217,0.15)}
+.hero-circle:nth-child(2){width:900px;height:900px;top:-200px;right:-200px;border-color:rgba(41,128,217,0.08)}
+.hero-circle:nth-child(3){width:1200px;height:1200px;top:-350px;right:-350px;border-color:rgba(41,128,217,0.05)}
+.hero-glow{position:absolute;width:500px;height:500px;top:50%;right:10%;transform:translateY(-50%);background:radial-gradient(ellipse,rgba(41,128,217,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-unit{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:340px;opacity:0.85;filter:drop-shadow(0 20px 60px rgba(41,128,217,0.4));animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(-50%) translateY(0)}50%{transform:translateY(-50%) translateY(-18px)}}
+.hero-unit svg{width:100%;height:auto}
+.hero-content{position:relative;z-index:2;max-width:640px;padding:0 5%;margin-left:5%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(41,128,217,0.15);border:1px solid rgba(41,128,217,0.3);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ice);margin-bottom:28px}
+.hero-badge span{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-headline{font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:900;line-height:1;text-transform:uppercase;margin-bottom:8px}
+.hero-headline .line1{color:var(--text-light)}
+.hero-headline .line2{color:var(--sky);font-size:80px;display:block}
+.hero-sub-banner{display:inline-block;background:linear-gradient(135deg,var(--sky),var(--blue));padding:10px 24px;margin:12px 0 16px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;letter-spacing:1px;text-transform:uppercase;transform:skewX(-2deg);box-shadow:0 4px 20px rgba(41,128,217,0.4)}
+.hero-desc{color:var(--text-muted);font-size:16px;line-height:1.7;margin-bottom:32px;max-width:480px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:var(--white);text-decoration:none;padding:16px 28px;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:0.5px;transition:all .3s;box-shadow:0 4px 20px rgba(0,200,83,0.35);animation:wa-pulse 2.5s ease-in-out infinite}
+@keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(0,200,83,0.35)}50%{box-shadow:0 4px 32px rgba(0,200,83,0.6)}}
+.btn-whatsapp:hover{background:var(--green-dark);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(41,128,217,0.5);color:var(--text-light);text-decoration:none;padding:15px 24px;border-radius:8px;font-size:14px;font-weight:600;transition:all .3s}
+.btn-outline:hover{border-color:var(--sky);color:var(--sky);background:rgba(41,128,217,0.08)}
+.hero-stats{display:flex;gap:40px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(41,128,217,0.15)}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--sky)}
+.stat-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px}
+
+/* AIR CURRENTS */
+.air-canvas{position:absolute;inset:0;pointer-events:none;opacity:0.4}
+
+/* SECTION BASE */
+section{padding:100px 5%}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:1.05;text-transform:uppercase}
+.section-title em{color:var(--sky);font-style:normal}
+.section-subtitle{color:var(--text-muted);font-size:16px;margin-top:12px;max-width:540px;line-height:1.7}
+
+/* SERVICES */
+.services{background:linear-gradient(180deg,#0a1628 0%,#0b1e45 100%)}
+.services-header{text-align:center;margin-bottom:64px}
+.services-header .section-subtitle{margin:12px auto 0}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.service-card{background:rgba(13,43,107,0.4);border:1px solid rgba(41,128,217,0.15);border-radius:16px;padding:40px;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(41,128,217,0.08),transparent);opacity:0;transition:opacity .3s}
+.service-card:hover{border-color:rgba(41,128,217,0.5);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:64px;height:64px;border-radius:50%;background:rgba(41,128,217,0.15);border:1px solid rgba(41,128,217,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:all .35s}
+.service-card:hover .service-icon{background:rgba(41,128,217,0.25);border-color:var(--sky);box-shadow:0 0 24px rgba(41,128,217,0.3)}
+.service-icon svg{width:28px;height:28px;stroke:var(--sky);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:all .35s}
+.service-card:hover .service-icon svg{stroke:var(--ice)}
+.service-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.service-desc{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:24px}
+.service-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sky);opacity:0;transform:translateY(8px);transition:all .3s}
+.service-card:hover .service-cta{opacity:1;transform:translateY(0)}
+.service-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5}
+/* Card-specific icon animations */
+.card-install:hover .icon-wrench{animation:wobble .4s ease-in-out}
+@keyframes wobble{0%,100%{transform:rotate(0)}33%{transform:rotate(-15deg)}66%{transform:rotate(10deg)}}
+.card-manut:hover .icon-gear{animation:gear-spin 1s linear infinite}
+@keyframes gear-spin{to{transform:rotate(360deg)}}
+.card-higien{position:relative}
+.ripple-wrap{position:absolute;bottom:0;left:0;right:0;height:80px;overflow:hidden;opacity:0;transition:opacity .4s}
+.card-higien:hover .ripple-wrap{opacity:0.4}
+.ripple{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:200%;height:200%;border-radius:40%;background:var(--sky);animation:ripple-anim 2.5s ease-in-out infinite}
+.ripple2{animation-delay:1.2s;opacity:0.5}
+@keyframes ripple-anim{0%,100%{transform:translateX(-50%) rotate(0deg)}50%{transform:translateX(-50%) rotate(180deg)}}
+.brand-logos{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;opacity:0;transform:translateY(8px);transition:all .35s .05s}
+.card-venda:hover .brand-logos{opacity:1;transform:translateY(0)}
+.brand-tag{background:rgba(41,128,217,0.12);border:1px solid rgba(41,128,217,0.2);border-radius:4px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--ice)}
+
+/* BENEFITS */
+.benefits{background:#070e1e;position:relative;overflow:hidden}
+.benefits-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(41,128,217,0.08) 0%,transparent 60%)}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:48px auto 0}
+.benefit-card{background:rgba(10,22,40,0.8);border:1px solid rgba(41,128,217,0.12);border-radius:16px;padding:36px 28px;text-align:center;transition:all .35s;cursor:pointer}
+.benefit-card:hover{border-color:rgba(41,128,217,0.4);background:rgba(13,43,107,0.5);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.benefit-icon-wrap{width:72px;height:72px;border-radius:50%;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;transition:all .35s}
+.benefit-card:nth-child(1) .benefit-icon-wrap{background:rgba(41,128,217,0.1);border:1px solid rgba(41,128,217,0.2)}
+.benefit-card:nth-child(2) .benefit-icon-wrap{background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2)}
+.benefit-card:nth-child(3) .benefit-icon-wrap{background:rgba(41,128,217,0.1);border:1px solid rgba(41,128,217,0.2)}
+.benefit-card:nth-child(1):hover .benefit-icon-wrap{box-shadow:0 0 30px rgba(41,128,217,0.4);background:rgba(41,128,217,0.2)}
+.benefit-card:nth-child(2):hover .benefit-icon-wrap{box-shadow:0 0 30px rgba(0,200,83,0.3);background:rgba(0,200,83,0.15)}
+.benefit-card:nth-child(3):hover .benefit-icon-wrap{box-shadow:0 0 30px rgba(41,128,217,0.4)}
+.benefit-icon-wrap svg{width:32px;height:32px;transition:all .35s}
+.benefit-card:nth-child(1):hover svg.icon-snowflake{animation:snowflake-glow .8s ease-in-out infinite alternate}
+@keyframes snowflake-glow{from{filter:drop-shadow(0 0 4px var(--sky))}to{filter:drop-shadow(0 0 12px var(--ice))}}
+.benefit-card:nth-child(2):hover svg.icon-leaf{stroke:var(--green)!important;filter:drop-shadow(0 0 8px var(--green))}
+.benefit-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.benefit-card:nth-child(1) .benefit-name{color:var(--sky)}
+.benefit-card:nth-child(2) .benefit-name{color:#5af285}
+.benefit-card:nth-child(3) .benefit-name{color:var(--ice)}
+.benefit-desc{color:var(--text-muted);font-size:13px;line-height:1.6}
+/* Shield air animation */
+.shield-air{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;opacity:0;transition:opacity .4s;pointer-events:none}
+.benefit-card:nth-child(3):hover .shield-air{opacity:1}
+.air-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(110,198,245,0.6),transparent);animation:air-flow 1.5s ease-in-out infinite}
+.air-line:nth-child(1){width:60%;top:30%;left:-60%;animation-delay:0s}
+.air-line:nth-child(2){width:80%;top:50%;left:-80%;animation-delay:.4s}
+.air-line:nth-child(3){width:50%;top:70%;left:-50%;animation-delay:.8s}
+@keyframes air-flow{from{transform:translateX(0)}to{transform:translateX(250%)}}
+
+/* PRODUCTS */
+.products{background:linear-gradient(180deg,#070e1e 0%,#0a1628 100%);position:relative;overflow:hidden}
+.parallax-snow{position:absolute;inset:0;pointer-events:none;opacity:0.15}
+.products-header{text-align:center;margin-bottom:60px}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1050px;margin:0 auto}
+.product-card{background:rgba(13,43,107,0.25);border:1px solid rgba(41,128,217,0.12);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .35s;position:relative}
+.product-card:hover{border-color:rgba(41,128,217,0.4);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.5)}
+.product-img{height:180px;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.product-img svg{opacity:0.7;transition:all .35s}
+.product-card:hover .product-img svg{opacity:1;transform:scale(1.05)}
+.product-quick{position:absolute;inset:0;background:rgba(10,22,40,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .3s}
+.product-card:hover .product-quick{opacity:1}
+.quick-spec{font-size:12px;color:var(--ice);text-align:center;line-height:1.6}
+.btn-view{display:inline-block;background:linear-gradient(135deg,var(--sky),var(--blue));color:var(--white);text-decoration:none;padding:8px 20px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:1px;transition:transform .2s;cursor:pointer}
+.btn-view:hover{transform:scale(1.05)}
+.product-info{padding:20px}
+.product-type{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--sky);text-transform:uppercase;margin-bottom:6px}
+.product-model{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px}
+.product-price{font-size:12px;color:var(--text-muted)}
+
+/* CONTACT */
+.contact{background:#070e1e;position:relative;overflow:hidden}
+.contact-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(0,200,83,0.05) 0%,transparent 60%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto;align-items:start}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(13,43,107,0.3);border:1px solid rgba(41,128,217,0.2);border-radius:8px;padding:12px 16px;color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--sky)}
+.form-group select option{background:var(--navy)}
+.form-group textarea{resize:vertical;min-height:100px}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--sky),var(--blue));border:none;color:var(--white);padding:15px;border-radius:8px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .3s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,128,217,0.4)}
+.contact-right{display:flex;flex-direction:column;gap:24px}
+.wa-bubble{background:linear-gradient(135deg,rgba(0,200,83,0.15),rgba(0,200,83,0.05));border:1.5px solid rgba(0,200,83,0.3);border-radius:20px;padding:36px;text-align:center;animation:bubble-float 4s ease-in-out infinite}
+@keyframes bubble-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.wa-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(90,242,133,0.8);margin-bottom:16px}
+.wa-icon-wrap{width:64px;height:64px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 30px rgba(0,200,83,0.4);animation:wa-glow 2s ease-in-out infinite}
+@keyframes wa-glow{0%,100%{box-shadow:0 0 20px rgba(0,200,83,0.4)}50%{box-shadow:0 0 40px rgba(0,200,83,0.7)}}
+.wa-number{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:var(--white);letter-spacing:1px;margin-bottom:8px}
+.wa-sub{color:rgba(90,242,133,0.7);font-size:13px}
+.btn-wa-big{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--green);color:var(--white);text-decoration:none;padding:16px;border-radius:10px;font-size:14px;font-weight:700;letter-spacing:0.5px;margin-top:20px;transition:all .3s}
+.btn-wa-big:hover{background:var(--green-dark);transform:translateY(-2px)}
+.orcamento-card{background:rgba(41,128,217,0.08);border:1px solid rgba(41,128,217,0.2);border-radius:16px;padding:28px;display:flex;align-items:center;gap:20px}
+.orcamento-icon{width:56px;height:56px;flex-shrink:0;background:rgba(41,128,217,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.orcamento-text h4{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase}
+.orcamento-text p{color:var(--text-muted);font-size:13px;margin-top:4px}
+
+/* FOOTER */
+footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:relative;overflow:hidden}
+.trust-bar{background:rgba(13,43,107,0.5);border-bottom:1px solid rgba(41,128,217,0.15);padding:20px 5%}
+.trust-inner{display:flex;align-items:center;justify-content:center;gap:48px;max-width:800px;margin:0 auto}
+.trust-item{display:flex;align-items:center;gap:12px}
+.trust-item svg{width:20px;height:20px;stroke:var(--sky);fill:none;stroke-width:2;flex-shrink:0}
+.trust-item span{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+.trust-sep{width:1px;height:30px;background:rgba(41,128,217,0.2)}
+.footer-main{padding:48px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px}
+.footer-brand .logo-mk{font-size:36px}
+.footer-slogan{font-size:13px;color:var(--sky);font-style:italic;margin-top:6px}
+.footer-info{text-align:right}
+.footer-info p{color:var(--text-muted);font-size:12px;margin-bottom:4px}
+.footer-info .footer-phone{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--white)}
+.footer-copy{text-align:center;padding:20px 5%;border-top:1px solid rgba(41,128,217,0.08);font-size:11px;color:rgba(142,184,217,0.4);letter-spacing:1px}
+
+/* FLOATING WA */
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:2000;width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(0,200,83,0.5);transition:transform .3s;animation:float-wa-pulse 2s ease-in-out infinite}
+@keyframes float-wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(0,200,83,0.5)}50%{box-shadow:0 4px 36px rgba(0,200,83,0.8)}}
+.float-wa:hover{transform:scale(1.12)}
+.float-wa svg{width:28px;height:28px;fill:var(--white)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* AC Unit SVG shapes */
+.ac-evap{fill:#dce8f5;stroke:#c0d0e0;stroke-width:1}
+.ac-vent{fill:#a8c0d8}
+.ac-cond-body{fill:#d0dce8;stroke:#b0c0d0;stroke-width:1}
+.ac-fan{fill:#b0c0d0}
+</style>
+</head>
+<body>
+
+<!-- Snow canvas -->
+<canvas id="snow"></canvas>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/5518997064062" class="float-wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <span class="logo-mk">MK</span>
+        <div class="logo-wave"></div>
+        <span class="logo-text">Serviços</span>
+      </div>
+      <span class="logo-snowflake">❄</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#produtos">Vendas</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-art">
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <canvas class="air-canvas" id="air"></canvas>
+  <!-- AC Unit illustration -->
+  <div class="hero-unit">
+    <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- Evaporator unit -->
+      <rect x="10" y="80" width="320" height="130" rx="18" fill="#d8e8f5" stroke="#b0c8e0" stroke-width="1.5"/>
+      <rect x="10" y="80" width="320" height="40" rx="18" fill="#c5d8ec"/>
+      <rect x="10" y="100" width="320" height="20" fill="#c5d8ec"/>
+      <!-- Vents -->
+      <rect x="30" y="150" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.8"/>
+      <rect x="30" y="162" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.6"/>
+      <rect x="30" y="174" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.4"/>
+      <!-- Logo panel -->
+      <rect x="20" y="88" width="80" height="24" rx="4" fill="rgba(41,128,217,0.2)"/>
+      <text x="30" y="104" font-family="sans-serif" font-size="11" font-weight="700" fill="#2980d9">MK</text>
+      <!-- Indicator lights -->
+      <circle cx="280" cy="100" r="4" fill="#00c853"/>
+      <circle cx="295" cy="100" r="4" fill="#2980d9" opacity="0.6"/>
+      <!-- Air flow lines -->
+      <g opacity="0.5">
+        <path d="M60 220 Q100 240 140 215" stroke="#6ec6f5" stroke-width="2" fill="none" stroke-dasharray="6,4">
+          <animate attributeName="stroke-dashoffset" values="0;-20" dur="2s" repeatCount="indefinite"/>
+        </path>
+        <path d="M120 230 Q170 255 220 228" stroke="#6ec6f5" stroke-width="2" fill="none" stroke-dasharray="6,4">
+          <animate attributeName="stroke-dashoffset" values="0;-20" dur="2.5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M180 225 Q230 248 280 222" stroke="#6ec6f5" stroke-width="1.5" fill="none" stroke-dasharray="6,4">
+          <animate attributeName="stroke-dashoffset" values="0;-20" dur="1.8s" repeatCount="indefinite"/>
+        </path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Elétrica & Climatização Profissional</div>
+    <h1 class="hero-headline">
+      <span class="line1">Tá Passando</span>
+      <span class="line2">Calor?</span>
+    </h1>
+    <div class="hero-sub-banner">A Gente Resolve!</div>
+    <p class="hero-desc">Conforto Térmico Premium para sua Casa e Empresa. Instalação, manutenção, higienização e venda de ar-condicionado com qualidade que você sente no ar.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5518997064062" class="btn-whatsapp" target="_blank">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Fale no WhatsApp Agora
+      </a>
+      <a href="#servicos" class="btn-outline">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+        Ver Serviços
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">500+</div><div class="stat-label">Clientes Atendidos</div></div>
+      <div><div class="stat-num">8+</div><div class="stat-label">Anos de Experiência</div></div>
+      <div><div class="stat-num">24h</div><div class="stat-label">Atendimento Rápido</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="services-header reveal">
+    <div class="section-label">O que fazemos</div>
+    <h2 class="section-title">Nossos <em>Serviços</em></h2>
+    <p class="section-subtitle">Soluções completas em climatização com profissionais qualificados e atendimento rápido.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card card-install reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" class="icon-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="service-name">Instalação</div>
+      <div class="service-desc">Instalação profissional de ar-condicionado com segurança e qualidade. Todos os tipos de aparelhos, split, cassete, piso-teto e ducted.</div>
+      <div class="service-cta">Solicitar Instalação <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="service-card card-manut reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" class="icon-gear"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </div>
+      <div class="service-name">Manutenção</div>
+      <div class="service-desc">Manutenção preventiva e corretiva para o melhor desempenho do seu aparelho. Evite falhas e reduza o consumo de energia.</div>
+      <div class="service-cta">Agendar Manutenção <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="service-card card-higien reveal reveal-delay-3">
+      <div class="ripple-wrap">
+        <div class="ripple"></div>
+        <div class="ripple ripple2"></div>
+      </div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
+      <div class="service-name">Higienização</div>
+      <div class="service-desc">Higienização completa que elimina bactérias, fungos e impurezas. Mais saúde e eficiência para o seu equipamento!</div>
+      <div class="service-cta">Agendar Higienização <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="service-card card-venda reveal reveal-delay-4">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <div class="service-name">Venda</div>
+      <div class="service-desc">Trabalhamos com as melhores marcas e modelos de aparelhos. Encontre o equipamento ideal para o seu espaço e orçamento.</div>
+      <div class="brand-logos">
+        <span class="brand-tag">DAIKIN</span>
+        <span class="brand-tag">LG</span>
+        <span class="brand-tag">FUJITSU</span>
+        <span class="brand-tag">MIDEA</span>
+        <span class="brand-tag">SAMSUNG</span>
+      </div>
+      <div class="service-cta">Ver Produtos <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="beneficios">
+  <div class="benefits-bg"></div>
+  <div style="text-align:center" class="reveal">
+    <div class="section-label">Por que nos escolher</div>
+    <h2 class="section-title">Benefícios do <em>Conforto Térmico</em></h2>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-icon-wrap">
+        <svg viewBox="0 0 24 24" class="icon-snowflake" style="stroke:#6ec6f5;fill:none;stroke-width:2;stroke-linecap:round">
+          <line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+      <div class="benefit-name">Mais Conforto</div>
+      <div class="benefit-desc">Temperatura ideal para o seu dia a dia, seja em casa ou na empresa. Qualidade de vida que você sente.</div>
+    </div>
+
+    <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-icon-wrap">
+        <svg viewBox="0 0 24 24" class="icon-leaf" style="stroke:#5af285;fill:none;stroke-width:2;stroke-linecap:round;transition:all .3s">
+          <path d="M2 22c0-9.94 8.06-18 18-18"/><path d="M2 22c8.28-1.23 15-8.37 15-17.07"/><path d="M2 22c.67-6.34 4.65-11.85 10.33-14.44"/>
+        </svg>
+      </div>
+      <div class="benefit-name">Economia</div>
+      <div class="benefit-desc">Equipamentos eficientes e manutenção em dia garantem menor consumo de energia e mais economia na conta.</div>
+    </div>
+
+    <div class="benefit-card reveal reveal-delay-3" style="position:relative;overflow:hidden">
+      <div class="shield-air">
+        <div class="air-line"></div>
+        <div class="air-line" style="animation-delay:.4s"></div>
+        <div class="air-line" style="animation-delay:.8s"></div>
+      </div>
+      <div class="benefit-icon-wrap" style="position:relative;z-index:1">
+        <svg viewBox="0 0 24 24" style="stroke:#6ec6f5;fill:none;stroke-width:2;stroke-linecap:round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <div class="benefit-name" style="position:relative;z-index:1">Qualidade do Ar</div>
+      <div class="benefit-desc" style="position:relative;z-index:1">Ar filtrado e purificado para sua casa ou empresa. Elimine bactérias, fungos e alérgenos do ambiente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="produtos">
+  <canvas class="parallax-snow" id="parallax-snow"></canvas>
+  <div class="products-header reveal">
+    <div class="section-label">Nossos Equipamentos</div>
+    <h2 class="section-title">Produtos em <em>Destaque</em></h2>
+    <p class="section-subtitle">Trabalhamos com as melhores marcas do mercado para garantir qualidade e durabilidade.</p>
+  </div>
+  <div class="products-grid">
+    <!-- Product cards -->
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-img">
+        <svg viewBox="0 0 200 140" width="160" height="112">
+          <rect x="10" y="30" width="180" height="80" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
+          <rect x="10" y="30" width="180" height="28" rx="12" fill="#c5d8ec"/>
+          <rect x="10" y="48" width="180" height="10" fill="#c5d8ec"/>
+          <rect x="20" y="72" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
+          <rect x="20" y="82" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <circle cx="160" cy="44" r="3" fill="#00c853"/>
+        </svg>
+        <div class="product-quick">
+          <div class="quick-spec">Split Inverter 9.000 BTU<br/>EER: 3.28 W/W<br/>Classe: A ✓</div>
+          <div class="btn-view">Ver Detalhes</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">Evaporadora Split</div>
+        <div class="product-model">9.000 BTU Inverter</div>
+        <div class="product-price">Consulte o preço</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-img">
+        <svg viewBox="0 0 200 160" width="140" height="112">
+          <!-- Condenser unit -->
+          <rect x="30" y="10" width="140" height="140" rx="10" fill="#d0dce8" stroke="#b0c0d0" stroke-width="1"/>
+          <circle cx="100" cy="80" r="50" fill="#b8cad8" stroke="#a0b8cc" stroke-width="1"/>
+          <circle cx="100" cy="80" r="35" fill="#c8d8e8" stroke="#a8bcd0" stroke-width="0.5"/>
+          <circle cx="100" cy="80" r="8" fill="#90a8bc"/>
+          <line x1="100" y1="45" x2="100" y2="55" stroke="#80a0b8" stroke-width="2"/>
+          <line x1="100" y1="105" x2="100" y2="115" stroke="#80a0b8" stroke-width="2"/>
+          <line x1="65" y1="80" x2="75" y2="80" stroke="#80a0b8" stroke-width="2"/>
+          <line x1="125" y1="80" x2="135" y2="80" stroke="#80a0b8" stroke-width="2"/>
+          <rect x="38" y="18" width="30" height="12" rx="2" fill="rgba(41,128,217,0.2)"/>
+        </svg>
+        <div class="product-quick">
+          <div class="quick-spec">Condensadora 12.000 BTU<br/>Gás: R-410A<br/>Uso: Residencial ✓</div>
+          <div class="btn-view">Ver Detalhes</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">Condensadora</div>
+        <div class="product-model">12.000 BTU R-410A</div>
+        <div class="product-price">Consulte o preço</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-3">
+      <div class="product-img">
+        <svg viewBox="0 0 200 140" width="160" height="112">
+          <rect x="10" y="20" width="180" height="100" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
+          <rect x="10" y="20" width="180" height="32" rx="12" fill="#c5d8ec"/>
+          <rect x="10" y="42" width="180" height="10" fill="#c5d8ec"/>
+          <rect x="20" y="66" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
+          <rect x="20" y="76" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <rect x="20" y="86" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.4"/>
+          <circle cx="155" cy="36" r="4" fill="#2980d9"/>
+          <circle cx="168" cy="36" r="4" fill="#00c853"/>
+        </svg>
+        <div class="product-quick">
+          <div class="quick-spec">Split Inverter 18.000 BTU<br/>EER: 3.45 W/W<br/>Classe: A+ ✓</div>
+          <div class="btn-view">Ver Detalhes</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">Evaporadora Split</div>
+        <div class="product-model">18.000 BTU Inverter A+</div>
+        <div class="product-price">Consulte o preço</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contato">
+  <div class="contact-bg"></div>
+  <div style="text-align:center;margin-bottom:60px" class="reveal">
+    <div class="section-label">Entre em Contato</div>
+    <h2 class="section-title">Vamos <em>Resolver</em> Juntos</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="form-group">
+        <label>Seu Nome</label>
+        <input type="text" placeholder="João Silva">
+      </div>
+      <div class="form-group">
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" placeholder="(18) 99999-9999">
+      </div>
+      <div class="form-group">
+        <label>Serviço Desejado</label>
+        <select>
+          <option value="">Selecione...</option>
+          <option>Instalação</option>
+          <option>Manutenção</option>
+          <option>Higienização</option>
+          <option>Venda / Orçamento</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensagem</label>
+        <textarea placeholder="Descreva sua necessidade..."></textarea>
+      </div>
+      <button class="btn-submit">Enviar Mensagem</button>
+    </div>
+    <div class="contact-right reveal reveal-delay-2">
+      <div class="wa-bubble">
+        <div class="wa-label">Atendimento Imediato</div>
+        <div class="wa-icon-wrap">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="wa-number">(18) 99706-4062</div>
+        <div class="wa-sub">Fale Agora pelo WhatsApp</div>
+        <a href="https://wa.me/5518997064062" class="btn-wa-big" target="_blank">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Iniciar Conversa
+        </a>
+      </div>
+      <div class="orcamento-card">
+        <div class="orcamento-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6ec6f5" stroke-width="2" stroke-linecap="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="orcamento-text">
+          <h4>Orçamento Sem Compromisso!</h4>
+          <p>Solicite agora e receba em até 30 minutos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Profissionais Qualificados</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Serviço de Confiança</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Atendimento Rápido</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div>
+          <div class="logo-mk" style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:#2980d9">MK</div>
+          <div style="font-size:11px;letter-spacing:3px;color:#8eb8d9;text-transform:uppercase;font-weight:600">Serviços</div>
+        </div>
+        <span style="font-size:18px;color:#6ec6f5;animation:spin 8s linear infinite;display:inline-block">❄</span>
+      </div>
+      <div class="footer-slogan">Qualidade que você sente no ar!</div>
+    </div>
+    <div class="footer-info">
+      <p>Elétrica & Climatização</p>
+      <div class="footer-phone">(18) 99706-4062</div>
+      <p style="margin-top:8px;color:#2980d9">Atendemos toda a região</p>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 MK Serviços – Elétrica & Climatização. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+// === SNOW EFFECT ===
+(function(){
+  const canvas = document.getElementById('snow');
+  const ctx = canvas.getContext('2d');
+  let flakes = [];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<80;i++){
+    flakes.push({
+      x:Math.random()*window.innerWidth,
+      y:Math.random()*window.innerHeight,
+      r:Math.random()*3+1,
+      speed:Math.random()*0.8+0.2,
+      drift:Math.random()*0.4-0.2,
+      opacity:Math.random()*0.5+0.1
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    flakes.forEach(f=>{
+      ctx.beginPath();
+      ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(110,198,245,${f.opacity})`;
+      ctx.fill();
+      f.y+=f.speed;
+      f.x+=f.drift;
+      if(f.y>canvas.height+10){f.y=-10;f.x=Math.random()*canvas.width}
+      if(f.x>canvas.width+10){f.x=-10}
+      if(f.x<-10){f.x=canvas.width+10}
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// === AIR CURRENTS HERO ===
+(function(){
+  const canvas = document.getElementById('air');
+  if(!canvas)return;
+  const ctx = canvas.getContext('2d');
+  const hero = canvas.closest('.hero');
+  function resize(){canvas.width=hero.offsetWidth;canvas.height=hero.offsetHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  let particles=[];
+  for(let i=0;i<60;i++){
+    particles.push({
+      x:Math.random()*canvas.width*0.5+canvas.width*0.4,
+      y:Math.random()*canvas.height*0.6+canvas.height*0.2,
+      vx:-(Math.random()*1.5+0.5),
+      vy:(Math.random()-0.5)*0.4,
+      life:Math.random(),
+      maxLife:Math.random()*0.8+0.2,
+      size:Math.random()*1.5+0.5
+    });
+  }
+  function drawAir(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.life+=0.004;
+      if(p.life>p.maxLife){
+        p.x=canvas.width*0.5+Math.random()*canvas.width*0.4;
+        p.y=canvas.height*0.2+Math.random()*canvas.height*0.5;
+        p.life=0;
+      }
+      const alpha=Math.sin(p.life/p.maxLife*Math.PI)*0.25;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(110,198,245,${alpha})`;
+      ctx.fill();
+      p.x+=p.vx;
+      p.y+=p.vy;
+    });
+    requestAnimationFrame(drawAir);
+  }
+  drawAir();
+})();
+
+// === PARALLAX SNOW (products section) ===
+(function(){
+  const canvas = document.getElementById('parallax-snow');
+  if(!canvas)return;
+  const ctx = canvas.getContext('2d');
+  const sec = canvas.closest('.products');
+  function resize(){canvas.width=sec.offsetWidth;canvas.height=sec.offsetHeight}
+  resize();
+  let flakes=[];
+  for(let i=0;i<20;i++){
+    flakes.push({x:Math.random()*sec.offsetWidth,y:Math.random()*sec.offsetHeight,r:Math.random()*8+4,speed:Math.random()*0.3+0.1})
+  }
+  let scrollY=0;
+  window.addEventListener('scroll',()=>{scrollY=window.scrollY});
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    flakes.forEach(f=>{
+      ctx.beginPath();
+      ctx.arc(f.x,(f.y+scrollY*0.1)%canvas.height,f.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(110,198,245,0.15)`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// === SCROLL REVEAL ===
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.1});
+  els.forEach(el=>obs.observe(el));
+})();
+
+// === NAV SCROLL EFFECT ===
+window.addEventListener('scroll',function(){
+  const nav = document.querySelector('nav');
+  if(window.scrollY>50){
+    nav.style.background='rgba(4,12,24,0.97)';
+  } else {
+    nav.style.background='rgba(10,22,40,0.92)';
+  }
+});
+</script>
+</body>
+</html>
