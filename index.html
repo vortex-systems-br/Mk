@@ -46,6 +46,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,22,40,0.
 .nav-cta::after{display:none!important}
 .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 24px rgba(41,128,217,0.5)!important;color:var(--white)!important}
 
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:30px;height:22px;background:none;border:none;cursor:pointer;padding:0;z-index:1001}
+.hamburger span{display:block;width:100%;height:3px;background:var(--sky);border-radius:2px;transition:all .3s ease}
+.hamburger.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
 /* HERO */
 .hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,var(--navy) 0%,#0b1e45 50%,#0a1628 100%)}
 .hero-bg-art{position:absolute;inset:0;overflow:hidden}
@@ -99,7 +106,7 @@ section{padding:100px 5%}
 .service-card:hover .service-icon{background:rgba(41,128,217,0.25);border-color:var(--sky);box-shadow:0 0 24px rgba(41,128,217,0.3)}
 .service-icon svg{width:28px;height:28px;stroke:var(--sky);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:all .35s}
 .service-card:hover .service-icon svg{stroke:var(--ice)}
-.service-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.service-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;word-break:break-word}
 .service-desc{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:24px}
 .service-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sky);opacity:0;transform:translateY(8px);transition:all .3s}
 .service-card:hover .service-cta{opacity:1;transform:translateY(0)}
@@ -232,6 +239,160 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
 .ac-vent{fill:#a8c0d8}
 .ac-cond-body{fill:#d0dce8;stroke:#b0c0d0;stroke-width:1}
 .ac-fan{fill:#b0c0d0}
+
+/* ============================================
+   RESPONSIVE — TABLET (≤ 1024px)
+   ============================================ */
+@media (max-width: 1024px){
+  .hero-unit{width:260px;right:3%;opacity:0.5}
+  .hero-headline{font-size:60px}
+  .hero-headline .line2{font-size:68px}
+  .section-title{font-size:44px}
+  .services-grid{max-width:720px}
+  .service-card{padding:32px}
+  .benefits-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .benefit-card{padding:28px 20px}
+  .products-grid{grid-template-columns:repeat(2,1fr);max-width:680px}
+  .contact-grid{gap:40px}
+  .trust-inner{gap:28px}
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE (≤ 768px)
+   ============================================ */
+@media (max-width: 768px){
+  /* NAV */
+  nav{padding:0 4%}
+  .nav-inner{height:64px}
+  .logo-mk{font-size:34px}
+  .logo-wave{width:48px}
+  .logo-text{font-size:11px;letter-spacing:2px}
+  .logo-snowflake{font-size:18px}
+  .hamburger{display:flex}
+  .nav-links{
+    position:fixed;
+    top:64px;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    background:rgba(4,12,24,0.98);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(41,128,217,0.2);
+    padding:16px 5% 24px;
+    transform:translateY(-150%);
+    transition:transform .35s ease;
+    box-shadow:0 12px 40px rgba(0,0,0,0.5);
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links li{width:100%;border-bottom:1px solid rgba(41,128,217,0.1)}
+  .nav-links li:last-child{border-bottom:none;margin-top:12px}
+  .nav-links a{display:block;padding:14px 0;font-size:14px;letter-spacing:2px}
+  .nav-links a::after{display:none}
+  .nav-cta{text-align:center;padding:14px 22px!important;margin-top:4px}
+
+  /* HERO */
+  .hero{height:auto;min-height:100vh;padding:120px 0 60px}
+  .hero-unit{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    width:200px;
+    margin:0 auto 24px;
+    opacity:0.9;
+    animation:float-mob 6s ease-in-out infinite;
+  }
+  @keyframes float-mob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .hero-circle:nth-child(1){width:380px;height:380px;top:-80px;right:-80px}
+  .hero-circle:nth-child(2){width:560px;height:560px;top:-150px;right:-150px}
+  .hero-circle:nth-child(3){display:none}
+  .hero-glow{width:300px;height:300px;right:-50px}
+  .hero-content{margin-left:0;padding:0 5%;max-width:100%;text-align:center}
+  .hero-badge{font-size:10px;padding:6px 14px;letter-spacing:1.5px;margin-bottom:20px}
+  .hero-headline{font-size:48px}
+  .hero-headline .line2{font-size:56px}
+  .hero-sub-banner{font-size:20px;padding:8px 18px;margin:10px 0 14px}
+  .hero-desc{font-size:15px;margin:0 auto 26px;max-width:100%}
+  .hero-actions{justify-content:center;gap:12px}
+  .btn-whatsapp{padding:14px 22px;font-size:13px;width:100%;justify-content:center}
+  .btn-outline{padding:13px 20px;font-size:13px;width:100%;justify-content:center}
+  .hero-stats{
+    flex-wrap:wrap;
+    gap:20px 24px;
+    justify-content:center;
+    margin-top:32px;
+    padding-top:24px;
+  }
+  .hero-stats > div{flex:1 1 calc(33% - 24px);min-width:90px;text-align:center}
+  .stat-num{font-size:26px}
+  .stat-label{font-size:10px;letter-spacing:1px}
+
+  /* SECTIONS */
+  section{padding:64px 5%}
+  .section-title{font-size:34px}
+  .section-label{font-size:10px;letter-spacing:3px}
+  .section-subtitle{font-size:14px}
+
+  /* SERVICES — 1 coluna */
+  .services-header{margin-bottom:40px}
+  .services-grid{grid-template-columns:1fr;gap:18px;max-width:100%}
+  .service-card{padding:28px 22px}
+  .service-name{font-size:22px;letter-spacing:0.5px}
+  .service-desc{font-size:13px}
+  .service-cta{opacity:1;transform:none}
+
+  /* BENEFITS — 1 coluna */
+  .benefits-grid{grid-template-columns:1fr;gap:18px;margin-top:36px;max-width:100%}
+  .benefit-card{padding:32px 24px}
+
+  /* PRODUCTS — 1 coluna */
+  .products-header{margin-bottom:40px}
+  .products-grid{grid-template-columns:1fr;gap:18px;max-width:100%}
+  .product-img{height:160px}
+  .product-quick{opacity:1;background:rgba(10,22,40,0.55)}
+
+  /* CONTACT — 1 coluna */
+  .contact-grid{grid-template-columns:1fr;gap:32px}
+  .wa-number{font-size:30px}
+  .wa-bubble{padding:28px 20px}
+  .orcamento-card{padding:22px;gap:14px}
+  .orcamento-text h4{font-size:18px}
+  .orcamento-text p{font-size:12px}
+
+  /* FOOTER */
+  .trust-bar{padding:18px 4%}
+  .trust-inner{flex-direction:column;gap:14px}
+  .trust-sep{display:none}
+  .trust-item span{font-size:10px;letter-spacing:1.5px}
+  .footer-main{flex-direction:column;align-items:center;text-align:center;padding:36px 5%;gap:24px}
+  .footer-info{text-align:center}
+  .footer-info .footer-phone{font-size:22px}
+
+  /* FLOAT WA */
+  .float-wa{bottom:20px;right:20px;width:52px;height:52px}
+  .float-wa svg{width:26px;height:26px}
+}
+
+/* ============================================
+   RESPONSIVE — SMALL MOBILE (≤ 380px)
+   ============================================ */
+@media (max-width: 380px){
+  .hero-headline{font-size:40px}
+  .hero-headline .line2{font-size:46px}
+  .hero-sub-banner{font-size:17px;padding:7px 14px}
+  .section-title{font-size:28px}
+  .hero-unit{width:170px}
+  .hero-stats{gap:14px 16px}
+  .hero-stats > div{flex:1 1 calc(50% - 16px)}
+  .stat-num{font-size:24px}
+  .wa-number{font-size:26px}
+  .service-card{padding:24px 18px}
+  .service-name{font-size:20px}
+  .logo-mk{font-size:30px}
+  .logo-wave{width:42px}
+}
 </style>
 </head>
 <body>
@@ -255,12 +416,17 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
       </div>
       <span class="logo-snowflake">❄</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#produtos">Vendas</a></li>
-      <li><a href="#contato">Contato</a></li>
-      <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="nav-link-item">Home</a></li>
+      <li><a href="#servicos" class="nav-link-item">Serviços</a></li>
+      <li><a href="#produtos" class="nav-link-item">Vendas</a></li>
+      <li><a href="#contato" class="nav-link-item">Contato</a></li>
+      <li><a href="#contato" class="nav-cta nav-link-item">Solicitar Orçamento</a></li>
     </ul>
   </div>
 </nav>
@@ -627,6 +793,31 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
 </footer>
 
 <script>
+// === HAMBURGER MENU ===
+(function(){
+  const burger = document.getElementById('hamburger');
+  const links = document.getElementById('navLinks');
+  if(!burger || !links) return;
+  burger.addEventListener('click',()=>{
+    burger.classList.toggle('active');
+    links.classList.toggle('open');
+  });
+  // Close menu on link click
+  document.querySelectorAll('.nav-link-item').forEach(a=>{
+    a.addEventListener('click',()=>{
+      burger.classList.remove('active');
+      links.classList.remove('open');
+    });
+  });
+  // Close menu on outside click
+  document.addEventListener('click',(e)=>{
+    if(!burger.contains(e.target) && !links.contains(e.target)){
+      burger.classList.remove('active');
+      links.classList.remove('open');
+    }
+  });
+})();
+
 // === SNOW EFFECT ===
 (function(){
   const canvas = document.getElementById('snow');
@@ -635,7 +826,8 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
   function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
   resize();
   window.addEventListener('resize',resize);
-  for(let i=0;i<80;i++){
+  const flakeCount = window.innerWidth < 768 ? 40 : 80;
+  for(let i=0;i<flakeCount;i++){
     flakes.push({
       x:Math.random()*window.innerWidth,
       y:Math.random()*window.innerHeight,
