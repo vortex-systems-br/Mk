@@ -111,7 +111,6 @@ section{padding:100px 5%}
 .service-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sky);opacity:0;transform:translateY(8px);transition:all .3s}
 .service-card:hover .service-cta{opacity:1;transform:translateY(0)}
 .service-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5}
-/* Card-specific icon animations */
 .card-install:hover .icon-wrench{animation:wobble .4s ease-in-out}
 @keyframes wobble{0%,100%{transform:rotate(0)}33%{transform:rotate(-15deg)}66%{transform:rotate(10deg)}}
 .card-manut:hover .icon-gear{animation:gear-spin 1s linear infinite}
@@ -148,7 +147,6 @@ section{padding:100px 5%}
 .benefit-card:nth-child(2) .benefit-name{color:#5af285}
 .benefit-card:nth-child(3) .benefit-name{color:var(--ice)}
 .benefit-desc{color:var(--text-muted);font-size:13px;line-height:1.6}
-/* Shield air animation */
 .shield-air{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;opacity:0;transition:opacity .4s;pointer-events:none}
 .benefit-card:nth-child(3):hover .shield-air{opacity:1}
 .air-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(110,198,245,0.6),transparent);animation:air-flow 1.5s ease-in-out infinite}
@@ -161,7 +159,7 @@ section{padding:100px 5%}
 .products{background:linear-gradient(180deg,#070e1e 0%,#0a1628 100%);position:relative;overflow:hidden}
 .parallax-snow{position:absolute;inset:0;pointer-events:none;opacity:0.15}
 .products-header{text-align:center;margin-bottom:60px}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1050px;margin:0 auto}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
 .product-card{background:rgba(13,43,107,0.25);border:1px solid rgba(41,128,217,0.12);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .35s;position:relative}
 .product-card:hover{border-color:rgba(41,128,217,0.4);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.5)}
 .product-img{height:180px;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -207,7 +205,7 @@ section{padding:100px 5%}
 /* FOOTER */
 footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:relative;overflow:hidden}
 .trust-bar{background:rgba(13,43,107,0.5);border-bottom:1px solid rgba(41,128,217,0.15);padding:20px 5%}
-.trust-inner{display:flex;align-items:center;justify-content:center;gap:48px;max-width:800px;margin:0 auto}
+.trust-inner{display:flex;align-items:center;justify-content:center;gap:48px;max-width:900px;margin:0 auto}
 .trust-item{display:flex;align-items:center;gap:12px}
 .trust-item svg{width:20px;height:20px;stroke:var(--sky);fill:none;stroke-width:2;flex-shrink:0}
 .trust-item span{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
@@ -233,12 +231,7 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 .reveal-delay-4{transition-delay:.4s}
-
-/* AC Unit SVG shapes */
-.ac-evap{fill:#dce8f5;stroke:#c0d0e0;stroke-width:1}
-.ac-vent{fill:#a8c0d8}
-.ac-cond-body{fill:#d0dce8;stroke:#b0c0d0;stroke-width:1}
-.ac-fan{fill:#b0c0d0}
+.reveal-delay-5{transition-delay:.5s}
 
 /* ============================================
    RESPONSIVE — TABLET (≤ 1024px)
@@ -252,7 +245,7 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
   .service-card{padding:32px}
   .benefits-grid{grid-template-columns:repeat(3,1fr);gap:18px}
   .benefit-card{padding:28px 20px}
-  .products-grid{grid-template-columns:repeat(2,1fr);max-width:680px}
+  .products-grid{grid-template-columns:repeat(3,1fr);max-width:100%}
   .contact-grid{gap:40px}
   .trust-inner{gap:28px}
 }
@@ -261,7 +254,6 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
    RESPONSIVE — MOBILE (≤ 768px)
    ============================================ */
 @media (max-width: 768px){
-  /* NAV */
   nav{padding:0 4%}
   .nav-inner{height:64px}
   .logo-mk{font-size:34px}
@@ -291,8 +283,6 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
   .nav-links a{display:block;padding:14px 0;font-size:14px;letter-spacing:2px}
   .nav-links a::after{display:none}
   .nav-cta{text-align:center;padding:14px 22px!important;margin-top:4px}
-
-  /* HERO */
   .hero{height:auto;min-height:100vh;padding:120px 0 60px}
   .hero-unit{
     position:relative;
@@ -318,50 +308,32 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
   .hero-actions{justify-content:center;gap:12px}
   .btn-whatsapp{padding:14px 22px;font-size:13px;width:100%;justify-content:center}
   .btn-outline{padding:13px 20px;font-size:13px;width:100%;justify-content:center}
-  .hero-stats{
-    flex-wrap:wrap;
-    gap:20px 24px;
-    justify-content:center;
-    margin-top:32px;
-    padding-top:24px;
-  }
+  .hero-stats{flex-wrap:wrap;gap:20px 24px;justify-content:center;margin-top:32px;padding-top:24px}
   .hero-stats > div{flex:1 1 calc(33% - 24px);min-width:90px;text-align:center}
   .stat-num{font-size:26px}
   .stat-label{font-size:10px;letter-spacing:1px}
-
-  /* SECTIONS */
   section{padding:64px 5%}
   .section-title{font-size:34px}
   .section-label{font-size:10px;letter-spacing:3px}
   .section-subtitle{font-size:14px}
-
-  /* SERVICES — 1 coluna */
   .services-header{margin-bottom:40px}
   .services-grid{grid-template-columns:1fr;gap:18px;max-width:100%}
   .service-card{padding:28px 22px}
   .service-name{font-size:22px;letter-spacing:0.5px}
   .service-desc{font-size:13px}
   .service-cta{opacity:1;transform:none}
-
-  /* BENEFITS — 1 coluna */
   .benefits-grid{grid-template-columns:1fr;gap:18px;margin-top:36px;max-width:100%}
   .benefit-card{padding:32px 24px}
-
-  /* PRODUCTS — 1 coluna */
   .products-header{margin-bottom:40px}
   .products-grid{grid-template-columns:1fr;gap:18px;max-width:100%}
   .product-img{height:160px}
   .product-quick{opacity:1;background:rgba(10,22,40,0.55)}
-
-  /* CONTACT — 1 coluna */
   .contact-grid{grid-template-columns:1fr;gap:32px}
   .wa-number{font-size:30px}
   .wa-bubble{padding:28px 20px}
   .orcamento-card{padding:22px;gap:14px}
   .orcamento-text h4{font-size:18px}
   .orcamento-text p{font-size:12px}
-
-  /* FOOTER */
   .trust-bar{padding:18px 4%}
   .trust-inner{flex-direction:column;gap:14px}
   .trust-sep{display:none}
@@ -369,15 +341,10 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
   .footer-main{flex-direction:column;align-items:center;text-align:center;padding:36px 5%;gap:24px}
   .footer-info{text-align:center}
   .footer-info .footer-phone{font-size:22px}
-
-  /* FLOAT WA */
   .float-wa{bottom:20px;right:20px;width:52px;height:52px}
   .float-wa svg{width:26px;height:26px}
 }
 
-/* ============================================
-   RESPONSIVE — SMALL MOBILE (≤ 380px)
-   ============================================ */
 @media (max-width: 380px){
   .hero-headline{font-size:40px}
   .hero-headline .line2{font-size:46px}
@@ -440,24 +407,18 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
     <div class="hero-glow"></div>
   </div>
   <canvas class="air-canvas" id="air"></canvas>
-  <!-- AC Unit illustration -->
   <div class="hero-unit">
     <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg">
-      <!-- Evaporator unit -->
       <rect x="10" y="80" width="320" height="130" rx="18" fill="#d8e8f5" stroke="#b0c8e0" stroke-width="1.5"/>
       <rect x="10" y="80" width="320" height="40" rx="18" fill="#c5d8ec"/>
       <rect x="10" y="100" width="320" height="20" fill="#c5d8ec"/>
-      <!-- Vents -->
       <rect x="30" y="150" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.8"/>
       <rect x="30" y="162" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.6"/>
       <rect x="30" y="174" width="280" height="8" rx="3" fill="#99b8d5" opacity="0.4"/>
-      <!-- Logo panel -->
       <rect x="20" y="88" width="80" height="24" rx="4" fill="rgba(41,128,217,0.2)"/>
       <text x="30" y="104" font-family="sans-serif" font-size="11" font-weight="700" fill="#2980d9">MK</text>
-      <!-- Indicator lights -->
       <circle cx="280" cy="100" r="4" fill="#00c853"/>
       <circle cx="295" cy="100" r="4" fill="#2980d9" opacity="0.6"/>
-      <!-- Air flow lines -->
       <g opacity="0.5">
         <path d="M60 220 Q100 240 140 215" stroke="#6ec6f5" stroke-width="2" fill="none" stroke-dasharray="6,4">
           <animate attributeName="stroke-dashoffset" values="0;-20" dur="2s" repeatCount="indefinite"/>
@@ -612,7 +573,8 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
     <p class="section-subtitle">Trabalhamos com as melhores marcas do mercado para garantir qualidade e durabilidade.</p>
   </div>
   <div class="products-grid">
-    <!-- Product cards -->
+
+    <!-- 9.000 BTU Inverter -->
     <div class="product-card reveal reveal-delay-1">
       <div class="product-img">
         <svg viewBox="0 0 200 140" width="160" height="112">
@@ -622,68 +584,130 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
           <rect x="20" y="72" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
           <rect x="20" y="82" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
           <circle cx="160" cy="44" r="3" fill="#00c853"/>
+          <text x="22" y="46" font-family="sans-serif" font-size="9" font-weight="700" fill="#2980d9">INVERTER</text>
         </svg>
         <div class="product-quick">
-          <div class="quick-spec">Split Inverter 9.000 BTU<br/>EER: 3.28 W/W<br/>Classe: A ✓</div>
-          <div class="btn-view">Ver Detalhes</div>
+          <div class="quick-spec">Split Inverter 9.000 BTU<br/>Tecnologia Inverter<br/>Classe: A ✓</div>
+          <a href="https://wa.me/5518997064062" class="btn-view" target="_blank">Pedir Orçamento</a>
         </div>
       </div>
       <div class="product-info">
-        <div class="product-type">Evaporadora Split</div>
+        <div class="product-type">Split Inverter</div>
         <div class="product-model">9.000 BTU Inverter</div>
         <div class="product-price">Consulte o preço</div>
       </div>
     </div>
 
+    <!-- 12.000 BTU Inverter -->
     <div class="product-card reveal reveal-delay-2">
       <div class="product-img">
-        <svg viewBox="0 0 200 160" width="140" height="112">
-          <!-- Condenser unit -->
-          <rect x="30" y="10" width="140" height="140" rx="10" fill="#d0dce8" stroke="#b0c0d0" stroke-width="1"/>
-          <circle cx="100" cy="80" r="50" fill="#b8cad8" stroke="#a0b8cc" stroke-width="1"/>
-          <circle cx="100" cy="80" r="35" fill="#c8d8e8" stroke="#a8bcd0" stroke-width="0.5"/>
-          <circle cx="100" cy="80" r="8" fill="#90a8bc"/>
-          <line x1="100" y1="45" x2="100" y2="55" stroke="#80a0b8" stroke-width="2"/>
-          <line x1="100" y1="105" x2="100" y2="115" stroke="#80a0b8" stroke-width="2"/>
-          <line x1="65" y1="80" x2="75" y2="80" stroke="#80a0b8" stroke-width="2"/>
-          <line x1="125" y1="80" x2="135" y2="80" stroke="#80a0b8" stroke-width="2"/>
-          <rect x="38" y="18" width="30" height="12" rx="2" fill="rgba(41,128,217,0.2)"/>
+        <svg viewBox="0 0 200 140" width="160" height="112">
+          <rect x="10" y="28" width="180" height="84" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
+          <rect x="10" y="28" width="180" height="30" rx="12" fill="#c5d8ec"/>
+          <rect x="10" y="48" width="180" height="10" fill="#c5d8ec"/>
+          <rect x="20" y="72" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
+          <rect x="20" y="82" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <rect x="20" y="92" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.4"/>
+          <circle cx="158" cy="43" r="3" fill="#00c853"/>
+          <circle cx="168" cy="43" r="3" fill="#2980d9" opacity="0.7"/>
+          <text x="22" y="45" font-family="sans-serif" font-size="9" font-weight="700" fill="#2980d9">INVERTER</text>
         </svg>
         <div class="product-quick">
-          <div class="quick-spec">Condensadora 12.000 BTU<br/>Gás: R-410A<br/>Uso: Residencial ✓</div>
-          <div class="btn-view">Ver Detalhes</div>
+          <div class="quick-spec">Split Inverter 12.000 BTU<br/>Tecnologia Inverter<br/>Classe: A ✓</div>
+          <a href="https://wa.me/5518997064062" class="btn-view" target="_blank">Pedir Orçamento</a>
         </div>
       </div>
       <div class="product-info">
-        <div class="product-type">Condensadora</div>
-        <div class="product-model">12.000 BTU R-410A</div>
+        <div class="product-type">Split Inverter</div>
+        <div class="product-model">12.000 BTU Inverter</div>
         <div class="product-price">Consulte o preço</div>
       </div>
     </div>
 
+    <!-- 18.000 BTU Inverter -->
     <div class="product-card reveal reveal-delay-3">
       <div class="product-img">
         <svg viewBox="0 0 200 140" width="160" height="112">
-          <rect x="10" y="20" width="180" height="100" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
-          <rect x="10" y="20" width="180" height="32" rx="12" fill="#c5d8ec"/>
-          <rect x="10" y="42" width="180" height="10" fill="#c5d8ec"/>
-          <rect x="20" y="66" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
-          <rect x="20" y="76" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
-          <rect x="20" y="86" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.4"/>
-          <circle cx="155" cy="36" r="4" fill="#2980d9"/>
-          <circle cx="168" cy="36" r="4" fill="#00c853"/>
+          <rect x="10" y="26" width="180" height="88" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
+          <rect x="10" y="26" width="180" height="32" rx="12" fill="#c5d8ec"/>
+          <rect x="10" y="48" width="180" height="10" fill="#c5d8ec"/>
+          <rect x="20" y="70" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.8"/>
+          <rect x="20" y="80" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <rect x="20" y="90" width="160" height="6" rx="2" fill="#99b8d5" opacity="0.4"/>
+          <circle cx="155" cy="42" r="4" fill="#2980d9"/>
+          <circle cx="168" cy="42" r="4" fill="#00c853"/>
+          <text x="22" y="44" font-family="sans-serif" font-size="9" font-weight="700" fill="#2980d9">INVERTER</text>
         </svg>
         <div class="product-quick">
-          <div class="quick-spec">Split Inverter 18.000 BTU<br/>EER: 3.45 W/W<br/>Classe: A+ ✓</div>
-          <div class="btn-view">Ver Detalhes</div>
+          <div class="quick-spec">Split Inverter 18.000 BTU<br/>Tecnologia Inverter<br/>Classe: A+ ✓</div>
+          <a href="https://wa.me/5518997064062" class="btn-view" target="_blank">Pedir Orçamento</a>
         </div>
       </div>
       <div class="product-info">
-        <div class="product-type">Evaporadora Split</div>
+        <div class="product-type">Split Inverter</div>
         <div class="product-model">18.000 BTU Inverter A+</div>
         <div class="product-price">Consulte o preço</div>
       </div>
     </div>
+
+    <!-- 24.000 BTU Inverter -->
+    <div class="product-card reveal reveal-delay-4">
+      <div class="product-img">
+        <svg viewBox="0 0 200 140" width="160" height="112">
+          <rect x="6" y="24" width="188" height="92" rx="12" fill="#dce8f5" stroke="#b0c8e0" stroke-width="1"/>
+          <rect x="6" y="24" width="188" height="34" rx="12" fill="#c5d8ec"/>
+          <rect x="6" y="48" width="188" height="10" fill="#c5d8ec"/>
+          <rect x="18" y="68" width="164" height="7" rx="2" fill="#99b8d5" opacity="0.8"/>
+          <rect x="18" y="79" width="164" height="7" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <rect x="18" y="90" width="164" height="7" rx="2" fill="#99b8d5" opacity="0.4"/>
+          <circle cx="160" cy="41" r="4" fill="#00c853"/>
+          <circle cx="173" cy="41" r="4" fill="#2980d9"/>
+          <text x="20" y="43" font-family="sans-serif" font-size="9" font-weight="700" fill="#2980d9">INVERTER</text>
+        </svg>
+        <div class="product-quick">
+          <div class="quick-spec">Split Inverter 24.000 BTU<br/>Ideal para ambientes grandes<br/>Classe: A ✓</div>
+          <a href="https://wa.me/5518997064062" class="btn-view" target="_blank">Pedir Orçamento</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">Split Inverter</div>
+        <div class="product-model">24.000 BTU Inverter</div>
+        <div class="product-price">Consulte o preço</div>
+      </div>
+    </div>
+
+    <!-- Piso-Teto -->
+    <div class="product-card reveal reveal-delay-5">
+      <div class="product-img">
+        <svg viewBox="0 0 200 140" width="160" height="112">
+          <!-- Piso-teto unit vertical style -->
+          <rect x="55" y="10" width="90" height="120" rx="10" fill="#d0dce8" stroke="#b0c0d0" stroke-width="1"/>
+          <rect x="55" y="10" width="90" height="22" rx="10" fill="#c0d0e0"/>
+          <rect x="55" y="22" width="90" height="10" fill="#c0d0e0"/>
+          <!-- Horizontal vents -->
+          <rect x="65" y="40" width="70" height="5" rx="2" fill="#99b8d5" opacity="0.9"/>
+          <rect x="65" y="50" width="70" height="5" rx="2" fill="#99b8d5" opacity="0.75"/>
+          <rect x="65" y="60" width="70" height="5" rx="2" fill="#99b8d5" opacity="0.6"/>
+          <rect x="65" y="70" width="70" height="5" rx="2" fill="#99b8d5" opacity="0.45"/>
+          <rect x="65" y="80" width="70" height="5" rx="2" fill="#99b8d5" opacity="0.3"/>
+          <!-- Indicator lights -->
+          <circle cx="85" cy="20" r="3" fill="#00c853"/>
+          <circle cx="95" cy="20" r="3" fill="#2980d9" opacity="0.7"/>
+          <!-- Label -->
+          <text x="100" y="110" font-family="sans-serif" font-size="8" font-weight="700" fill="#2980d9" text-anchor="middle">PISO-TETO</text>
+        </svg>
+        <div class="product-quick">
+          <div class="quick-spec">Ar-Condicionado Piso-Teto<br/>Instalação flexível<br/>Alta capacidade ✓</div>
+          <a href="https://wa.me/5518997064062" class="btn-view" target="_blank">Pedir Orçamento</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">Piso-Teto</div>
+        <div class="product-model">Piso-Teto Inverter</div>
+        <div class="product-price">Consulte o preço</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -745,7 +769,7 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
         </div>
         <div class="orcamento-text">
           <h4>Orçamento Sem Compromisso!</h4>
-          <p>Solicite agora e receba em até 30 minutos.</p>
+          <p>Entre em contato e solicite o seu agora.</p>
         </div>
       </div>
     </div>
@@ -768,7 +792,12 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
       <div class="trust-sep"></div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span>Atendimento Rápido</span>
+        <span>Seg–Sex · 08h às 18h</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Araçatuba e Região</span>
       </div>
     </div>
   </div>
@@ -786,7 +815,8 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
     <div class="footer-info">
       <p>Elétrica & Climatização</p>
       <div class="footer-phone">(18) 99706-4062</div>
-      <p style="margin-top:8px;color:#2980d9">Atendemos toda a região</p>
+      <p style="margin-top:4px;color:#8eb8d9;font-size:12px">Seg–Sex · 08h às 18h</p>
+      <p style="margin-top:4px;color:#2980d9">Araçatuba e Região</p>
     </div>
   </div>
   <div class="footer-copy">© 2025 MK Serviços – Elétrica & Climatização. Todos os direitos reservados.</div>
@@ -802,14 +832,12 @@ footer{background:#040c18;border-top:1px solid rgba(41,128,217,0.15);position:re
     burger.classList.toggle('active');
     links.classList.toggle('open');
   });
-  // Close menu on link click
   document.querySelectorAll('.nav-link-item').forEach(a=>{
     a.addEventListener('click',()=>{
       burger.classList.remove('active');
       links.classList.remove('open');
     });
   });
-  // Close menu on outside click
   document.addEventListener('click',(e)=>{
     if(!burger.contains(e.target) && !links.contains(e.target)){
       burger.classList.remove('active');
